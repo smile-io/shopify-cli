@@ -84,8 +84,8 @@ export const deploy = async (options: DeployOptions) => {
         validationErrors = await uploadUIExtensionsBundle({apiKey, bundlePath, extensions, token})
       }
 
-      await uploadThemeExtensions(options.app.extensions.theme, {apiKey, identifiers, token})
-      identifiers = await uploadFunctionExtensions(app.extensions.function, {identifiers, token})
+      // await uploadThemeExtensions(options.app.extensions.theme, {apiKey, identifiers, token})
+      // identifiers = await uploadFunctionExtensions(app.extensions.function, {identifiers, token})
       app = await updateAppIdentifiers({app, identifiers, command: 'deploy'})
 
       if (validationErrors.length > 0) {
