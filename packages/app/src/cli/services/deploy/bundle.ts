@@ -20,18 +20,18 @@ export async function bundleUIAndBuildFunctionExtensions(options: BundleOptions)
     await file.touch(path.join(bundleDirectory, '.shopify'))
 
     await output.concurrent([
-      {
-        prefix: 'theme_extensions',
-        action: async (stdout: Writable, stderr: Writable, signal: error.AbortSignal) => {
-          await buildThemeExtensions({
-            app: options.app,
-            extensions: options.app.extensions.theme,
-            stdout,
-            stderr,
-            signal,
-          })
-        },
-      },
+      // {
+      //   prefix: 'theme_extensions',
+      //   action: async (stdout: Writable, stderr: Writable, signal: error.AbortSignal) => {
+      //     await buildThemeExtensions({
+      //       app: options.app,
+      //       extensions: options.app.extensions.theme,
+      //       stdout,
+      //       stderr,
+      //       signal,
+      //     })
+      //   },
+      // },
       {
         prefix: 'extensions',
         action: async (stdout: Writable, stderr: Writable, signal: error.AbortSignal) => {
@@ -53,14 +53,14 @@ export async function bundleUIAndBuildFunctionExtensions(options: BundleOptions)
           })
         },
       },
-      ...options.app.extensions.function.map((functionExtension) => {
-        return {
-          prefix: `function_${functionExtension.localIdentifier}`,
-          action: async (stdout: Writable, stderr: Writable, signal: error.AbortSignal) => {
-            await buildFunctionExtension(functionExtension, {stdout, stderr, signal, app: options.app})
-          },
-        }
-      }),
+      // ...options.app.extensions.function.map((functionExtension) => {
+      //   return {
+      //     prefix: `function_${functionExtension.localIdentifier}`,
+      //     action: async (stdout: Writable, stderr: Writable, signal: error.AbortSignal) => {
+      //       await buildFunctionExtension(functionExtension, {stdout, stderr, signal, app: options.app})
+      //     },
+      //   }
+      // }),
     ])
 
     if (options.bundle) {
