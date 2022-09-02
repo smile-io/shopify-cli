@@ -5,8 +5,8 @@ import {AppInterface} from '../models/app/app.js'
 
 export async function validateExtensions(app: AppInterface) {
   await Promise.all([
-    validateFunctionExtensions(app.extensions.function),
+    // validateFunctionExtensions(app.extensions.function),
     validateUIExtensions(app.extensions.ui),
-    validateThemeExtensions(app.extensions.theme),
+    // validateThemeExtensions(app.extensions.theme),
   ])
 }
